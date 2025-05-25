@@ -1,0 +1,19 @@
+digraph pipeline {
+  rankdir=LR;
+  node [shape=box style=filled fontname=Helvetica fontsize=10];
+  prepare       [label="Prepare directories\nCreate folders", fillcolor=lightblue];
+  index_ref     [label="Index Reference Genome", fillcolor=lightgreen];
+  map_reads     [label="Map Paired-End Reads", fillcolor=lightyellow];
+  sam_to_bam    [label="SAM → Sorted BAM", fillcolor=lightyellow];
+  flagstat      [label="Mapping Quality Check\n(samtools flagstat)", fillcolor=orange];
+  variant_call  [label="Call Genetic Variants\n(freebayes)", fillcolor=plum];
+  final_result  [label="Move Final Results", fillcolor=grey];
+  clean         [label="Clean Temporary Files", fillcolor=red fontcolor=white];
+  prepare       -> index_ref;
+  index_ref     -> map_reads;
+  map_reads     -> sam_to_bam;
+  sam_to_bam    -> flagstat;
+  flagstat      -> variant_call;
+  variant_call  -> final_result;
+  final_result  -> clean;
+}
