@@ -35,4 +35,4 @@
 **Вывод:**
  Предсказания AlphaFold2 и RoseTTAFold2 дали практически идентичную структуру для данной последовательности; выравнивание jCE это подтверждает.
 
-![rcsb_image.png](pairwise\result\rcsb_image.png)
+![rcsb_image.png](pairwise/result/rcsb_image.png)
